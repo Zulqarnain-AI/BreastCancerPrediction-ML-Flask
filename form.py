@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import FloatField, SubmitField # Changed IntegerField to FloatField
+from wtforms import FloatField, SubmitField 
 from wtforms.validators import DataRequired, NumberRange
 
 class InputForm(FlaskForm):

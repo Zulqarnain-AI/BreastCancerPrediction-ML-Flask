@@ -14,44 +14,45 @@ def home():
     forms= InputForm()
     message=None
     if forms.validate_on_submit():
-        list = pd.DataFrame([{
-            'radius_mean':9.029,
-            'texture_mean':17.33,
-            'perimeter_mean':58.79,
-            'area_mean':250.5,
-            'smoothness_mean':0.10660,
-            'compactness_mean':0.14130,
-            'concavity_mean':0.31300,
-            'concave points_mean':0.04375,
-            'symmetry_mean':0.2111,
-            'fractal_dimension_mean':0.08046,
-            'radius_se':0.3274,
-            'texture_se':1.1940,
-            'perimeter_se':1.885,
-            'area_se':17.67,
-            'smoothness_se':0.009549,
-            'compactness_se':0.08606,
-            'concavity_se':0.303800,
-            'concave points_se':0.033220,
-            'symmetry_se':0.04197,
-            'fractal_dimension_se':0.009559,
-            'radius_worst':10.310,
-            'texture_worst':22.65,
-            'perimeter_worst':65.50	,
-            'area_worst':324.7,
-            'smoothness_worst':0.14820,
-            'compactness_worst':0.43650,
-            'concavity_worst':1.25200	,
-            'concave points_worst':0.17500,
-            'symmetry_worst':0.4228,
-            'fractal_dimension_worst':0.11750}])
+        data = pd.DataFrame([{
+            'radius_mean': forms.radius_mean.data,
+            'texture_mean': forms.texture_mean.data,
+            'perimeter_mean': forms.perimeter_mean.data,
+            'area_mean': forms.area_mean.data,
+            'smoothness_mean': forms.smoothness_mean.data,
+            'compactness_mean': forms.compactness_mean.data,
+            'concavity_mean': forms.concavity_mean.data,
+            'concave points_mean': forms.concave_points_mean.data,
+            'symmetry_mean': forms.symmetry_mean.data,
+            'fractal_dimension_mean': forms.fractal_dimension_mean.data,
+            'radius_se': forms.radius_se.data,
+            'texture_se': forms.texture_se.data,
+            'perimeter_se': forms.perimeter_se.data,
+            'area_se': forms.area_se.data,
+            'smoothness_se': forms.smoothness_se.data,
+            'compactness_se': forms.compactness_se.data,
+            'concavity_se': forms.concavity_se.data,
+            'concave points_se': forms.concave_points_se.data,
+            'symmetry_se': forms.symmetry_se.data,
+            'fractal_dimension_se': forms.fractal_dimension_se.data,
+            'radius_worst': forms.radius_worst.data,
+            'texture_worst': forms.texture_worst.data,
+            'perimeter_worst': forms.perimeter_worst.data,
+            'area_worst': forms.area_worst.data,
+            'smoothness_worst': forms.smoothness_worst.data,
+            'compactness_worst': forms.compactness_worst.data,
+            'concavity_worst': forms.concavity_worst.data,
+            'concave points_worst': forms.concave_points_worst.data,
+            'symmetry_worst': forms.symmetry_worst.data,
+            'fractal_dimension_worst': forms.fractal_dimension_worst.data}])
 
-        prediction = model.predict(list)
-        if prediction =="B":
-            message ="Benign" 
+
+        prediction = model.predict(data)
+        if prediction[0] == "B":
+            message ="<h2>based on your input data<h2> <h1>the model predict: Benign<h1>" 
 
         else:
-            message="Malignant"
+            message="<h2>based on your input data<h2> <h1>the model predict:<bold > Malignant <bold><h1>"
         return render_template('predict.html',message=message,form=forms)
 
     return render_template('predict.html',message=message,form=forms)
