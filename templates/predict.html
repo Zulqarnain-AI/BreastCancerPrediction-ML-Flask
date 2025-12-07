@@ -209,11 +209,11 @@
             if (event.target == modal) closeModal();
         }
 
-        {% if message %}
+        
             window.onload = function() {
                 showModal("{{ message | safe }}");
             }
-        {% endif %}
+        
     </script>
 
 </body>
